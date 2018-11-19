@@ -1,0 +1,45 @@
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+
+.navbar .container-avatar{
+	width: 35px;
+	height: 35px;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.navbar .container-avatar img{
+	height: 100%;
+}
+
+.nav-link.icon{
+	margin-top: 5px; 
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.nav-link.avatar{
+	margin-top: 2px; 
+	margin-left: 5px;
+	margin-right: 5px;
+}
