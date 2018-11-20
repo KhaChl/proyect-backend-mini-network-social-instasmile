@@ -52,5 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/save/publication', 'ImageController@save')->name('save.publication');
 
+    Route::get('/publication/image/{filename}', 'ImageController@getImage')->name('publication.image');
+
 });
 

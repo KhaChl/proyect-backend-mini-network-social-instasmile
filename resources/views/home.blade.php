@@ -4,19 +4,35 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            {{-- Message --}}
             @include('includes.messages')
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+            {{-- Card all publication --}}
+            @foreach ($images as $image)
+                <div class="card publication">
+                    <div class="card-header">
+                        <a href="">
+                            <div class="container-avatar">
+                                <img src="{{route('account.avatar', ['filename' => $image->user->image_path])}}" alt="Avatar">
+                            </div>
+                            <div class="data-user">
+                                {{$image->user->nick}}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="publication-image">
+                            <img src="{{ route('publication.image', ['filename' => $image->image_path]) }}" alt="publication-image">
                         </div>
-                    @endif
-                    You are logged in!
+                        <div class="likes">
+
+                        </div> 
+                        <div class="description">
+                            <span class="nickname">{{'@'.$image->user->nick}}</span>
+                            <p>{{$image->description}}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Image;
@@ -30,12 +31,7 @@ class ImageController extends Controller
         if ($image_publication) {
 
             // create instance
-            $img = \Image::make($image_publication);
-
-            // resize the image to a width of 300 and constrain aspect ratio (auto height)
-            $img->resize(400, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->encode('jpg');;
+            $img = \Image::make($image_publication)->encode('jpg', 90);
 
             // put name unique image
             $image_publication_name = time().$image_publication->getClientOriginalName();
@@ -62,5 +58,11 @@ class ImageController extends Controller
                         ->with(['message-error'=>'Error al guardar imagen']);
         }
         
+    }
+
+    public function getImage($filename){
+        $file = Storage::disk('images')->get($filename);
+
+        return new Response($file,200);
     }
 }

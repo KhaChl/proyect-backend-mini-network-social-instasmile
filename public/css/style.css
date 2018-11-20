@@ -1,3 +1,4 @@
+/* Preview Image */
 .image-preview-input {
     position: relative;
 	overflow: hidden;
@@ -20,18 +21,62 @@
 .image-preview-input-title {
     margin-left:2px;
 }
-
-.navbar .container-avatar{
+/* Avatar */
+.navbar .container-avatar,
+.publication .container-avatar{
 	width: 35px;
 	height: 35px;
 	overflow: hidden;
 	border-radius: 50%;
 }
 
-.navbar .container-avatar img{
+.navbar .container-avatar img,
+.publication .container-avatar img{
 	height: 100%;
 }
 
+.publication a{
+	text-decoration: none;
+}
+
+.publication .container-avatar{
+	float: left;
+	margin-right: 15px;
+}
+
+.publication .data-user{
+	font-weight: bold;
+	color: #333;
+	font-size: 17px;
+	line-height: 37px;
+}
+/* Card publication */
+.publication{
+	margin-bottom: 50px;
+}
+
+.publication-image{
+	width: 100%;
+	overflow: hidden;
+}
+
+.publication-image img{
+	width: 100%;
+}
+
+.publication .card-body{
+	padding: 0px;
+}
+
+.publication .nickname{
+	color: grey;
+}
+
+.publication .description{
+	padding: 20px;
+}
+
+/* Icon navbar */
 .nav-link.icon{
 	margin-top: 5px; 
 	margin-left: 5px;

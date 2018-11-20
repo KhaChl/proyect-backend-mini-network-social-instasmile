@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role', 'name', 'surname', 'nick','email', 'password',
+        'role', 'name', 'surname', 'nick','email', 'password','image_path',
     ];
 
     /**
@@ -28,7 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Relacion uno a muchos con las imagenes
+    // One to many relationship with the images
     public function images(){
         return $this->hasMany('App\Images');
     }
