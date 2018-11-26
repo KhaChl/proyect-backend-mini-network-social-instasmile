@@ -74,6 +74,25 @@
 
 .publication .description{
 	padding: 20px;
+	padding-bottom: 0px;
+	padding-top: 15px;
+}
+
+.publication .btn-comments{
+	margin: 20px;
+	margin-top: 0px;
+	background: #eeeeee;
+	color: #393e46;
+}
+
+.likes{
+	padding: 20px;
+	padding-bottom: 0px;
+	padding-top: 20px;
+}
+
+.likes img{
+	width: 25px;
 }
 
 /* Icon navbar */
