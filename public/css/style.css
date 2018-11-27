@@ -78,6 +78,10 @@
 	padding-top: 15px;
 }
 
+.description p{
+	margin: 0px;
+}
+
 .publication .btn-comments{
 	margin: 20px;
 	margin-top: 0px;
@@ -93,6 +97,28 @@
 
 .likes img{
 	width: 25px;
+}
+
+.comments a{
+	padding-left: 20px;
+}
+
+.comments p{
+	padding-top: 10px;
+}
+
+.comments textarea{
+	resize: none;
+	overflow: hidden;
+}
+
+.comments button{
+	margin-top: 10px;
+}
+
+.comments .comment a{
+	padding: 5px;
+	color: red;
 }
 
 /* Icon navbar */

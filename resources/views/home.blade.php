@@ -21,20 +21,50 @@
                             </a>
                         </div>
                         <div class="card-body">
+                            {{-- Image --}}
                             <div class="publication-image">
                                 <img src="{{ route('publication.image', ['filename' => $image->image_path]) }}" alt="publication-image">
                             </div>
+                            {{-- Likes --}}
                             <div class="likes">
                                 <img src="{{asset('img/hearts-grey.png')}}">
                             </div> 
+                            {{-- Description --}}
                             <div class="description">  
                                 <span class="nickname">{{'@'.$image->user->nick}}</span>
                                 <span class="nickname date">{{'| '.\FormatTime::LongTimeFilter($image->created_at)}}</span>
                                 <p>{{$image->description}}</p>
                             </div>
-                            <a href="" class="btn btn-comments">
-                                Comentarios
-                            </a>
+                            <hr>
+                            {{-- Comments --}}
+                            <div class="comments">
+                                <a href="">
+                                    Ver más comentarios
+                                </a>
+
+                                <form id="form-comment" action="{{route('save.comment')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="image_id" value="{{$image->id}}">
+                                    <textarea id="comment" name="content" class="form-control" required></textarea>
+                                    <button type="submit" class="btn btn-outline-success">Enviar</button>
+                                </form>
+                                <hr>
+                                @foreach ($image->comments as $comment)
+                                    <div class="comment">
+                                        <span class="nickname">{{'@'.$comment->user->nick}}</span>
+                                        <span class="nickname date">{{'| '.\FormatTime::LongTimeFilter($comment->created_at)}}</span>
+                                        @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                                <a href="{{route('comment.delete', ['id' => $comment->id])}}">
+                                                    <i class="fas fa-minus-circle"></i>
+                                                </a>
+                                            @endif
+                                        <p>
+                                            {{$comment->content}}
+                                        </p>   
+                                    </div>
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
                 @endforeach

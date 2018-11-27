@@ -54,5 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/publication/image/{filename}', 'ImageController@getImage')->name('publication.image');
 
+    Route::post('/save/comment', 'CommentController@save')->name('save.comment');
+
+    Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+
 });
 
