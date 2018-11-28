@@ -10,29 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//use App\Image;
-
-Route::get('/', function () {
-    //Test ORM
-    /*$images = Image::all();
-    foreach($images as $image){
-        echo $image->user->name.' '.$image->user->surname.'<br>';
-        echo $image->image_path.'<br>';
-        echo $image->description.'<br>';
-        echo 'Likes: '. count($image->likes);
-        if(count($image->comments) >= 1){
-            echo '<p><strong>Comentarios</strong></p>';
-            foreach ($image->comments as $comment) {
-                echo $comment->user->name.' '.$image->user->surname.': '.$comment->content.'<br>';
-            }
-        }
-        
-        echo '<hr>';
-    }
-    die();
-    return view('welcome');
-    */
-});
 
 Auth::routes();
 
@@ -57,6 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/save/comment', 'CommentController@save')->name('save.comment');
 
     Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
+
+    Route::get('/like/{image_id}', 'LikeController@like')->name('like');
+
+    Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('dislike');
 
 });
 

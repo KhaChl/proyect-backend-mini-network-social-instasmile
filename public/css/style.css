@@ -68,7 +68,7 @@
 	padding: 0px;
 }
 
-.publication .nickname{
+.publication .grey{
 	color: grey;
 }
 
@@ -119,6 +119,12 @@
 .comments .comment a{
 	padding: 5px;
 	color: red;
+}
+
+.publication .count-like{
+	padding: 20px;
+	padding-bottom: 0px;
+	padding-top: 0px;
 }
 
 /* Icon navbar */

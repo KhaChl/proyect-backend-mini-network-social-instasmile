@@ -27,21 +27,33 @@
                             </div>
                             {{-- Likes --}}
                             <div class="likes">
-                                <img src="{{asset('img/hearts-grey.png')}}">
+                                {{-- Check user like image --}}
+                                <?php $user_like = false;?>
+                                @foreach ($image->likes as $like)
+                                    @if ($like->user->id == Auth::user()->id)
+                                        <?php $user_like = true;?>
+                                    @endif
+                                @endforeach
+
+                                @if ($user_like)
+                                    <img src="{{asset('img/hearts-red.png')}}" data-id="{{$image->id}}" class="btn-like">
+                                @else
+                                    <img src="{{asset('img/hearts-grey.png')}}" data-id="{{$image->id}}" class="btn-dislike">
+                                @endif
+                                
                             </div> 
+                            <div class="count-like">
+                                <span class="grey like">{{count($image->likes)}} me gusta</span>
+                            </div>
                             {{-- Description --}}
                             <div class="description">  
-                                <span class="nickname">{{'@'.$image->user->nick}}</span>
-                                <span class="nickname date">{{'| '.\FormatTime::LongTimeFilter($image->created_at)}}</span>
+                                <span class="grey">{{'@'.$image->user->nick}}</span>
+                                <span class="grey date">{{'| '.\FormatTime::LongTimeFilter($image->created_at)}}</span>
                                 <p>{{$image->description}}</p>
                             </div>
                             <hr>
                             {{-- Comments --}}
                             <div class="comments">
-                                <a href="">
-                                    Ver más comentarios
-                                </a>
-
                                 <form id="form-comment" action="{{route('save.comment')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="image_id" value="{{$image->id}}">
