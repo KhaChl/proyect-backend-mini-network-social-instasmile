@@ -30,7 +30,6 @@ window.addEventListener('load', function(){
                 type: 'GET',
             });
 
-
             like();
         })
     }
