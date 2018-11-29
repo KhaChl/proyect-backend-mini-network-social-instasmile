@@ -4,14 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            {{-- Message --}}
-            @include('includes.messages')
             <div class="infinite-scroll">
                 {{-- Card all publication --}}
                 @foreach ($images as $image)
                     <div class="card publication">
                         <div class="card-header">
-                            <a href="">
+                            <a href="{{route('profile', ['id' => $image->user->id])}}">
                                 <div class="container-avatar">
                                     <img src="{{route('account.avatar', ['filename' => $image->user->image_path])}}" alt="Avatar">
                                 </div>
@@ -43,7 +41,7 @@
                                 
                             </div> 
                             <div class="count-like">
-                                <span class="grey like">{{count($image->likes)}} me gusta</span>
+                                <span class="grey like">{{$image->likes->count()}} me gusta</span>
                             </div>
                             {{-- Description --}}
                             <div class="description">  
@@ -75,7 +73,6 @@
                                         </p>   
                                     </div>
                                 @endforeach
-
                             </div>
                         </div>
                     </div>

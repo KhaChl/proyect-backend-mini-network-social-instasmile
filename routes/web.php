@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/account/password/change', 'UserController@updatePassword')->name('account.password.change');
 
     Route::get('/account/avatar/{filename}', 'UserController@getImage')->name('account.avatar');
+
+    Route::get('/profile/{id}', 'UserController@profile')->name('profile');
     
     Route::get('/create/publication', 'ImageController@create')->name('create.publication');
 
@@ -38,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/like/{image_id}', 'LikeController@like')->name('like');
 
     Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('dislike');
+
 
 });
 

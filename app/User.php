@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     // One to many relationship with the images
     public function images(){
-        return $this->hasMany('App\Images');
+        return $this->hasMany('App\Image');
     }
 
     
