@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Image;
+use App\Comment;
+use App\Like;
 use Auth;
 
 class ImageController extends Controller
@@ -65,4 +67,40 @@ class ImageController extends Controller
 
         return new Response($file,200);
     }
+
+    public function publicationDelete($id){
+
+        $user = Auth::user();
+        $image = Image::find($id);
+        $comments = Comment::where('image_id', $id)->get();
+        $likes = Like::where('image_id', $id)->get();
+
+        if($user && $image && $image->user->id == $user->id){
+
+            if($comments && $comments->count() >= 1){
+                foreach ($comments as $comment) {
+                    $comment->delete();
+                }
+            }
+
+            if($likes && $likes->count() >= 1){
+                foreach ($likes as $like) {
+                    $like->delete();
+                }
+            }
+
+            Storage::disk('images')->delete($image->image_path);
+
+            if($image->delete()){
+                return redirect()->route('profile', ['id' => $user->id])
+                                ->with(['message-success'=>'Publicación eliminada']);
+            }else {
+                return redirect()->route('profile', ['id' => $user->id])
+                                ->with(['message-error'=>'Error al eliminar publicacion']);
+            } 
+        }else {
+            return redirect()->route('home');
+        }
+    }
+
 }

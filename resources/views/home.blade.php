@@ -38,8 +38,7 @@
                                 @else
                                     <img src="{{asset('img/hearts-grey.png')}}" data-id="{{$image->id}}" class="btn-dislike">
                                 @endif
-                                
-                            </div> 
+                            </div>
                             <div class="count-like">
                                 <span class="grey like">{{$image->likes->count()}} me gusta</span>
                             </div>
@@ -64,10 +63,10 @@
                                         <span class="nickname">{{'@'.$comment->user->nick}}</span>
                                         <span class="nickname date">{{'| '.\FormatTime::LongTimeFilter($comment->created_at)}}</span>
                                         @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
-                                                <a href="{{route('comment.delete', ['id' => $comment->id])}}">
-                                                    <i class="fas fa-minus-circle"></i>
-                                                </a>
-                                            @endif
+                                            <a href="{{route('comment.delete', ['id' => $comment->id])}}">
+                                                <i class="fas fa-minus-circle fa-lg"></i>
+                                            </a>
+                                        @endif
                                         <p>
                                             {{$comment->content}}
                                         </p>   

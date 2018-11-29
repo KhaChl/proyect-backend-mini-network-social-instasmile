@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // UserController
+
     Route::get('/account/config', 'UserController@config')->name('config');
     
     Route::post('/acount/edit', 'UserController@updateConfig')->name('account.edit');
@@ -26,17 +28,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/account/avatar/{filename}', 'UserController@getImage')->name('account.avatar');
 
     Route::get('/profile/{id}', 'UserController@profile')->name('profile');
-    
+
+    // ImageController
     Route::get('/create/publication', 'ImageController@create')->name('create.publication');
 
     Route::post('/save/publication', 'ImageController@save')->name('save.publication');
 
     Route::get('/publication/image/{filename}', 'ImageController@getImage')->name('publication.image');
 
+    Route::get('/publication/delete/{id}', 'ImageController@publicationDelete')->name('publication.delete');
+
+    //CommentController 
     Route::post('/save/comment', 'CommentController@save')->name('save.comment');
 
     Route::get('/comment/delete/{id}', 'CommentController@delete')->name('comment.delete');
 
+    //LikeController
     Route::get('/like/{image_id}', 'LikeController@like')->name('like');
 
     Route::get('/dislike/{image_id}', 'LikeController@dislike')->name('dislike');

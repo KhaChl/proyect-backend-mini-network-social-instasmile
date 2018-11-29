@@ -92,15 +92,10 @@
 .likes{
 	padding: 20px;
 	padding-bottom: 0px;
-	padding-top: 20px;
 }
 
 .likes img{
 	width: 25px;
-}
-
-.comments a{
-	padding-left: 20px;
 }
 
 .comments p{
@@ -147,4 +142,8 @@
 	height: 200px;
 	overflow: hidden;
 	border-radius: 50%;
+}
+
+.action a{
+	line-height: 37px;
 }
