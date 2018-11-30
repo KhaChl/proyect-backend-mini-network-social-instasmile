@@ -58,8 +58,12 @@ class UserController extends Controller
             // put name unique image
             $image_profile_name = time().$image_profile->getClientOriginalName();
 
-            // save image storage (storage/app/users)
+            // save image storage (storage/app/users) and delete old avatar
             Storage::disk('users')->put($image_profile_name, $img);
+            if($user->image_path != 'default-avatar.jpg'){
+                Storage::disk('users')->delete($user->image_path);
+            }
+           
 
             //object user
             $user->image_path = $image_profile_name;
